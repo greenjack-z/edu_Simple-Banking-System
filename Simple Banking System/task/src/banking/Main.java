@@ -1,12 +1,6 @@
 package banking;
 
-import java.nio.file.Path;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -83,36 +77,11 @@ public class Main {
     public void login() {
         System.out.println("Enter your card number:");
         String number = readInput();
-        var isValidNumber = AccountService.checkCardNumber(number);
-        while (!isValidNumber.result()) {
-            System.out.println(isValidNumber.comment());
-            number = readInput();
-            isValidNumber = AccountService.checkCardNumber(number);
-        }
-        if (!accounts.containsKey(number)) {
-            System.out.println("account not registered");
-            return;
-        }
         System.out.println("Enter your PIN");
         String pin = readInput();
-        var isValidPin = AccountService.checkPIN(pin);
-        int attempts = 0;
-        while (currentAccount == null) {
-            while (!isValidPin.result()) {
-                System.out.println(AccountService.checkPIN(pin).comment());
-                pin = readInput();
-                isValidPin = AccountService.checkPIN(pin);
-
-            }
-            if (!accounts.get(number).pin.equals(pin)) {
-                System.out.println("wrong pin for this number");
-                attempts++;
-            } else {
-                currentAccount = accounts.get(number);
-            }
-            if (attempts == 3) {
-                return;
-            }
+        if (!AccountService.checkCardNumber(number) || !AccountService.checkPIN(pin)) {
+            System.out.println("Wrong card number or PIN");
+            return;
         }
         System.out.println("You have successfully logged in!");
         menu.currentPage = Menu.Page.ACCOUNT;

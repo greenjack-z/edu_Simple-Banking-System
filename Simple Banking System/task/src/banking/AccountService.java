@@ -31,34 +31,24 @@ public class AccountService {
         return sum % 10 == 0 ? 0 : 10 - sum % 10;
     }
 
-    public static CheckResult checkCardNumber(String number) {
-        if (number == null) {
-            return new CheckResult(false, "card number is null");
-        }
+    public static boolean checkCardNumber(String number) {
         if (number.length() != 16) {
-            return new CheckResult(false, "card number have to be 16 digits");
+            return false;
         }
         if (!number.startsWith("400000")) {
-            return new CheckResult(false, "wrong BIN");
+            return false;
         }
         int checkSum = getCheckSum(number.substring(0, number.length() - 1));
         int lastChar = Character.getNumericValue(number.toCharArray()[15]);
         System.out.printf("sum: %d -- last: %d%n", checkSum, lastChar);
-        if (checkSum != lastChar) {
-            return new CheckResult(false, "Wrong card number");
-        }
-        return new CheckResult(true, "card number is ok");
+        return checkSum == lastChar;
     }
 
-    public static CheckResult checkPIN(String pin) {
-        if (pin == null) {
-            return new CheckResult(false, "pin is null");
-        }
-        if (pin.length() != 4) {
-            return new CheckResult(false, "pin have to be 4 digits");
-        }
-        return new CheckResult(true, "pin is ok");
+    public static boolean checkPIN(String pin) {
+        return pin != null && pin.length() == 4;
     }
+
+
 
     record CheckResult(boolean result, String comment) {}
 }

@@ -733,6 +733,49 @@ files:
 - name: src/banking/DBService.java
   visible: true
   learner_created: true
+- name: card.s3db
+  visible: true
+  learner_created: true
+- name: tempDatabase.s3db
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8427#comment
 status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #8
+
+    After choosing &#39;Exit&#39; item you should stop your program and close database connection!
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+    Arguments: -fileName card.s3db
+
+    1. Create an account
+    2. Log into account
+    0. Exit
+
+    &gt; 1
+    Your card has been created
+    Your card number:
+    4000000347423818
+    Your card PIN:
+    6306
+
+    1. Create an account
+    2. Log into account
+    0. Exit
+
+    &gt; 2
+    Enter your card number:
+    &gt; 400000596222046
+    card number have to be 16 digits
+    &gt; 6306
+    card number have to be 16 digits
+    &gt; 0
+    card number have to be 16 digits
+  time: "Sun, 19 Feb 2023 13:55:44 UTC"
 record: 1
