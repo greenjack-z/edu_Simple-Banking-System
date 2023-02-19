@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Simple_Banking.iml" filepath="$PROJECT_DIR$/.idea/modules/Simple_Banking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Simple Banking System/task/Simple_Banking.Simple_Banking_System-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Simple Banking System/task/Simple_Banking.Simple_Banking_System-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Simple Banking System/task/Simple_Banking.Simple_Banking_System-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Simple Banking System/task/Simple_Banking.Simple_Banking_System-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Simple Banking System/task/Simple_Banking.Simple_Banking_System-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Simple Banking System/task/Simple_Banking.Simple_Banking_System-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Simple_Banking.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Simple_Banking.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Simple_Banking.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Simple_Banking.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Simple_Banking.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Simple_Banking.util.test.iml" />
+    </modules>
+  </component>
+</project>
