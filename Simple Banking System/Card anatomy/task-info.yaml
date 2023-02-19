@@ -238,15 +238,6 @@ files:
     }
 
   learner_created: false
-- name: src/banking/Menu.java
-  visible: true
-  learner_created: true
-- name: src/banking/AccountService.java
-  visible: true
-  learner_created: true
-- name: src/banking/Account.java
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8425#comment
 status: Unchecked
 record: 3
