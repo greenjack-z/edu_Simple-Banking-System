@@ -1,6 +1,12 @@
 package banking;
 
+import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -11,11 +17,29 @@ public class Main {
     Account currentAccount = null;
     boolean exit = false;
 
+    DBService dbService = new DBService();
+
     public static void main(String[] args) {
-        new Main().run();
+        String fileName = parseFileName(args);
+        new Main().run(fileName);
     }
 
-    private void run() {
+    private static String parseFileName(String[] args) {
+        boolean fileNameArg = false;
+        for (String arg : args) {
+            if (fileNameArg) {
+                return arg;
+            }
+            if (arg.equalsIgnoreCase("-fileName")) {
+                fileNameArg = true;
+            }
+        }
+        return "card.s3db";
+    }
+
+    private void run(String fileName) {
+        dbService.connectToDatabase(fileName);
+        dbService.createTable();
         while (!exit) {
             menu.print();
             try {
@@ -26,6 +50,7 @@ public class Main {
             }
         }
         scanner.close();
+        dbService.closeConnection();
     }
 
     private String readInput() {
@@ -45,6 +70,7 @@ public class Main {
         String pin = AccountService.generatePin();
         Account account = new Account(number, pin);
         accounts.put(number, account);
+        dbService.insert(account);
         System.out.printf("""
                 Your card has been created
                 Your card number:
@@ -64,7 +90,7 @@ public class Main {
             isValidNumber = AccountService.checkCardNumber(number);
         }
         if (!accounts.containsKey(number)) {
-            System.out.println("wrong account number");
+            System.out.println("account not registered");
             return;
         }
         System.out.println("Enter your PIN");

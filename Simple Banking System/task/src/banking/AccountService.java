@@ -33,10 +33,10 @@ public class AccountService {
 
     public static CheckResult checkCardNumber(String number) {
         if (number == null) {
-            return new CheckResult(false, "is Null");
+            return new CheckResult(false, "card number is null");
         }
         if (number.length() != 16) {
-            return new CheckResult(false, "wrong digits number");
+            return new CheckResult(false, "card number have to be 16 digits");
         }
         if (!number.startsWith("400000")) {
             return new CheckResult(false, "wrong BIN");
@@ -45,17 +45,17 @@ public class AccountService {
         int lastChar = Character.getNumericValue(number.toCharArray()[15]);
         System.out.printf("sum: %d -- last: %d%n", checkSum, lastChar);
         if (checkSum != lastChar) {
-            return new CheckResult(false, "Wrong card number or PIN");
+            return new CheckResult(false, "Wrong card number");
         }
-        return new CheckResult(true, "number is ok");
+        return new CheckResult(true, "card number is ok");
     }
 
     public static CheckResult checkPIN(String pin) {
         if (pin == null) {
-            return new CheckResult(false, "is Null");
+            return new CheckResult(false, "pin is null");
         }
         if (pin.length() != 4) {
-            return new CheckResult(false, "wrong digits number");
+            return new CheckResult(false, "pin have to be 4 digits");
         }
         return new CheckResult(true, "pin is ok");
     }
