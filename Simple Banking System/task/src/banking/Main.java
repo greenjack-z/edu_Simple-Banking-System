@@ -79,10 +79,11 @@ public class Main {
         String number = readInput();
         System.out.println("Enter your PIN");
         String pin = readInput();
-        if (!AccountService.checkCardNumber(number) || !AccountService.checkPIN(pin)) {
+        if (!AccountService.checkCardNumber(number) || !AccountService.checkPIN(pin) || !accounts.get(number).pin.equals(pin)) {
             System.out.println("Wrong card number or PIN");
             return;
         }
+        currentAccount = accounts.get(number);
         System.out.println("You have successfully logged in!");
         menu.currentPage = Menu.Page.ACCOUNT;
     }
