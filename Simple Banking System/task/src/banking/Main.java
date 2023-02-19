@@ -62,8 +62,7 @@ public class Main {
             number = AccountService.generateCardNumber();
         }
         String pin = AccountService.generatePin();
-        Account account = new Account(number, pin);
-        accounts.put(number, account);
+        Account account = new Account(number, pin, 0);
         dbService.insert(account);
         System.out.printf("""
                 Your card has been created
@@ -79,11 +78,17 @@ public class Main {
         String number = readInput();
         System.out.println("Enter your PIN");
         String pin = readInput();
-        if (!AccountService.checkCardNumber(number) || !AccountService.checkPIN(pin) || !accounts.get(number).pin.equals(pin)) {
+        if (!AccountService.checkCardNumber(number) || !AccountService.checkPIN(pin)) {
+            //error in input data format
             System.out.println("Wrong card number or PIN");
             return;
         }
-        currentAccount = accounts.get(number);
+        if (dbService.getAccountFromDB(number) == null || !dbService.getAccountFromDB(number).pin.equals(pin)) {
+            //account non exists or pin not correct
+            System.out.println("Wrong card number or PIN");
+            return;
+        }
+        currentAccount = dbService.getAccountFromDB(number);
         System.out.println("You have successfully logged in!");
         menu.currentPage = Menu.Page.ACCOUNT;
     }

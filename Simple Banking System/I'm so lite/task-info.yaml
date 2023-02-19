@@ -736,12 +736,9 @@ files:
 - name: card.s3db
   visible: true
   learner_created: true
-- name: tempDatabase.s3db
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8427#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: "Sun, 19 Feb 2023 15:06:56 UTC"
+  time: "Sun, 19 Feb 2023 18:46:59 UTC"
 record: 1

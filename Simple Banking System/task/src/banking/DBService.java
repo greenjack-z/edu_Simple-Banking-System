@@ -41,6 +41,19 @@ public class DBService {
         }
     }
 
+    public Account getAccountFromDB (String number) {
+        String sql = "SELECT number, pin, balance FROM card WHERE number = ?";
+        Account account = null;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, number);
+            ResultSet resultSet = statement.executeQuery();
+            account = new Account(number, resultSet.getString("pin"), resultSet.getInt("balance"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
     public void closeConnection() {
         try {
             connection.close();

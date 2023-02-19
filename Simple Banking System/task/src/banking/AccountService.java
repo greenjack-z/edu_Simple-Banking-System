@@ -40,7 +40,6 @@ public class AccountService {
         }
         int checkSum = getCheckSum(number.substring(0, number.length() - 1));
         int lastChar = Character.getNumericValue(number.toCharArray()[15]);
-        System.out.printf("sum: %d -- last: %d%n", checkSum, lastChar);
         return checkSum == lastChar;
     }
 

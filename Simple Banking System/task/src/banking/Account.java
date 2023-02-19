@@ -5,9 +5,9 @@ public class Account {
     String pin;
     int balance;
 
-    public Account(String number, String pin) {
+    public Account(String number, String pin, int balance) {
         this.number = number;
         this.pin = pin;
-        this.balance = 0;
+        this.balance = balance;
     }
 }
