@@ -35,9 +35,6 @@ public class AccountService {
         if (number.length() != 16) {
             return false;
         }
-        if (!number.startsWith("400000")) {
-            return false;
-        }
         int checkSum = getCheckSum(number.substring(0, number.length() - 1));
         int lastChar = Character.getNumericValue(number.toCharArray()[15]);
         return checkSum == lastChar;

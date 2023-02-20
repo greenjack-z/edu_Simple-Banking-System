@@ -73,8 +73,6 @@ _
 ,Simple Banking System/Card anatomy/task.html,a\7\a7c69c38f20544d7ef487a13e095aee5207091fa
 V
 &Simple Banking System/lesson-info.yaml,f\3\f34445235180d43932101031c8c84ffec252f1f8
-i
-9Simple Banking System/task/test/SimpleBankSystemTest.java,b\6\b6aff001dbdf10fa04f8e7ea802568765fd64fff
 Æ
 ~.idea/modules/Simple Banking System/task/build/reports/tests/Simple_Banking.Simple_Banking_System-task-build-reports-tests.iml,2\6\262ef2ba8cede98d06e4b09b2178b10033ce7d2e
 ¨
@@ -105,8 +103,6 @@ o.idea/modules/Simple Banking System/task/build/tmp/Simple_Banking.Simple_Bankin
 Å.idea/modules/Simple Banking System/task/build/test-results/Simple_Banking.Simple_Banking_System-task-build-test-results.main.iml,d\b\db7de85bdcc3e5794356d254bcc14e9e23c2a93e
 ü
 o.idea/modules/Simple Banking System/task/build/tmp/Simple_Banking.Simple_Banking_System-task-build-tmp.main.iml,d\d\dd0da6bd41bba807db5b59d831b9c9ceb7aa0ed2
-d
-4Simple Banking System/Advanced system/task-info.yaml,2\8\281086ee7c0176446ceaf4ad522cfc041f6024cf
 a
 1Simple Banking System/Card anatomy/task-info.yaml,0\3\03ee09f06d4e4c9496bd0a2dd0f4f9015acf636b
 ¨
