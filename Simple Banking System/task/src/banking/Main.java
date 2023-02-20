@@ -3,6 +3,7 @@ package banking;
 import java.util.Scanner;
 
 public class Main {
+    private static final String NOT_NUMBER = "Please enter the number.";
     Scanner scanner = new Scanner(System.in);
     Menu menu = new Menu(this);
     String currentCardNumber = null;
@@ -37,7 +38,7 @@ public class Main {
                 String input = readInput();
                 menu.choose(Integer.parseInt(input));
             } catch (NumberFormatException e) {
-                System.out.println("please enter the number!");
+                System.out.println(NOT_NUMBER);
             }
         }
         scanner.close();
@@ -97,5 +98,50 @@ public class Main {
 
     public void balance() {
         System.out.printf("Balance: %d%n", dbService.getBalance(currentCardNumber));
+    }
+
+    public void income() {
+        System.out.println("Enter income:");
+        String input = readInput();
+        try {
+            int income = Integer.parseInt(input);
+            int balance = dbService.getBalance(currentCardNumber);
+            dbService.updateBalance(currentCardNumber, balance + income);
+            System.out.println("Income was added!");
+        } catch (NumberFormatException e) {
+            System.out.println(NOT_NUMBER);
+        }
+    }
+
+    public void transfer() {
+        System.out.println("Enter card number:");
+        String transferNumber = readInput();
+        if (!AccountService.checkCardNumber(transferNumber)) {
+            System.out.println("Probably you made a mistake in the card number. Please try again!");
+            return;
+        }
+        if (!dbService.isRegistered(transferNumber)) {
+            System.out.println("Such a card does not exist.");
+            return;
+        }
+        System.out.println("Enter how much money you want to transfer:");
+        try {
+            int amount = Integer.parseInt(readInput());
+            int balance = dbService.getBalance(currentCardNumber);
+            if (amount > balance) {
+                System.out.println("Not enough money!");
+                return;
+            }
+            dbService.updateBalance(currentCardNumber, balance - amount);
+            dbService.updateBalance(transferNumber, dbService.getBalance(transferNumber) + amount);
+            System.out.println("Success!");
+        } catch (NumberFormatException e) {
+            System.out.println(NOT_NUMBER);
+        }
+    }
+
+    public void delete() {
+        dbService.deleteCard(currentCardNumber);
+        System.out.println("The account has been closed!");
     }
 }

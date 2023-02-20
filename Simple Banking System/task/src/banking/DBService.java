@@ -80,6 +80,27 @@ public class DBService {
         }
     }
 
+    public void updateBalance(String number, int balance) {
+        String sql = "UPDATE card SET balance = ? WHERE number = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, balance);
+            statement.setString(2, number);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCard(String number) {
+        String sql = "DELETE FROM card WHERE number = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, number);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void closeConnection() {
         try {
             connection.close();

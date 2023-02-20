@@ -6,12 +6,16 @@ public class Menu {
     public Menu(Main main) {
         this.main = main;
     }
+
     enum Item {
-        EXIT ("Exit"),
-        CREATE ("Create an account"),
-        LOGIN ("Log into account"),
-        LOGOUT ("Log out"),
-        BALANCE ("Balance");
+        BALANCE("Balance"),
+        CREATE("Create an account"),
+        DELETE("Close account"),
+        EXIT("Exit"),
+        INCOME("Add income"),
+        LOGIN("Log into account"),
+        LOGOUT("Log out"),
+        TRANSFER("Do transfer");
 
         final String title;
 
@@ -24,9 +28,10 @@ public class Menu {
             return title;
         }
     }
+
     enum Page {
         WELCOME (new Item[]{Item.EXIT, Item.CREATE, Item.LOGIN}),
-        ACCOUNT (new Item[]{Item.EXIT, Item.BALANCE, Item.LOGOUT});
+        ACCOUNT (new Item[]{Item.EXIT, Item.BALANCE, Item.INCOME, Item.TRANSFER, Item.DELETE, Item.LOGOUT});
 
         final Item[] items;
         Page(Item[] items) {
@@ -51,6 +56,9 @@ public class Menu {
             case LOGOUT -> main.logout();
             case CREATE -> main.createAccount();
             case BALANCE -> main.balance();
+            case INCOME -> main.income();
+            case TRANSFER -> main.transfer();
+            case DELETE -> main.delete();
         }
     }
 }
