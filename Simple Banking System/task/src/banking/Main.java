@@ -1,14 +1,11 @@
 package banking;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     Scanner scanner = new Scanner(System.in);
-    Map<String, Account> accounts = new HashMap<>();
     Menu menu = new Menu(this);
-    Account currentAccount = null;
+    String currentCardNumber = null;
     boolean exit = false;
 
     DBService dbService = new DBService();
@@ -58,12 +55,11 @@ public class Main {
 
     public void createAccount() {
         String number = AccountService.generateCardNumber();
-        while (accounts.containsKey(number)) {
+        while (dbService.isRegistered(number)) {
             number = AccountService.generateCardNumber();
         }
         String pin = AccountService.generatePin();
-        Account account = new Account(number, pin, 0);
-        dbService.insert(account);
+        dbService.insertCard(number, pin, 0);
         System.out.printf("""
                 Your card has been created
                 Your card number:
@@ -83,23 +79,23 @@ public class Main {
             System.out.println("Wrong card number or PIN");
             return;
         }
-        if (dbService.getAccountFromDB(number) == null || !dbService.getAccountFromDB(number).pin.equals(pin)) {
+        if (dbService.getPin(number) == null || !dbService.getPin(number).equals(pin)) {
             //account non exists or pin not correct
             System.out.println("Wrong card number or PIN");
             return;
         }
-        currentAccount = dbService.getAccountFromDB(number);
         System.out.println("You have successfully logged in!");
+        currentCardNumber = number;
         menu.currentPage = Menu.Page.ACCOUNT;
     }
 
     public void logout() {
         System.out.println("You have successfully logged out!");
-        currentAccount = null;
+        currentCardNumber = null;
         menu.currentPage = Menu.Page.WELCOME;
     }
 
     public void balance() {
-        System.out.printf("Balance: %d%n", currentAccount.balance);
+        System.out.printf("Balance: %d%n", dbService.getBalance(currentCardNumber));
     }
 }
